@@ -12,8 +12,19 @@
   	<h1><%= @transaction.code %></h1>
 	<p><%=  @transaction.name %></p>
 	<p><%=  @transaction.description %></p>
-	<%= link_to "<< Back to Transactions List", transactions_path %>
 
+	<p>
+		<%= link_to "<< Back to transactions List", transactions_path %>
+	</p>
+	
+	<p>
+		<%= link_to "delete", transaction_path(@transaction), method: :delete, data: {confirm: "Really delete the transaction?"}%>
+	<p>
+		
+	<p>
+		<%= link_to "edit", edit_transaction_path(@transaction) %>
+	</p>	
+		
   <%= yield %>
   </body>
 </html>
