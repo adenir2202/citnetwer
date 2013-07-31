@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	  <title>index.html</title>
+	  <%= javascript_include_tag :defaults %>
+	  <%= yield :head %>
+  </head>
+  <body>
+	<h1>All Transactions</h1>
+	
+	<ul id="transactions">
+	  <% @transactions.each do |transaction| %>
+	    <li>
+	    	<h3><%= link_to transaction.code, transaction_path(transaction), class: 'transaction_code', id: "transaction_#{transaction.id}"%>
+	      	 - <%= transaction.name %></h3>
+	    </li>
+	    
+	  <% end %>
+  
+	  <%= link_to "Create a New Transaction", new_transaction_path, class: "new_transaction" %>
+	</ul>
+	  	
+  	<%= yield %>
+  </body>
+</html>
