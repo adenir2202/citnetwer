@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	  <title>show.html</title>
+	  <%= javascript_include_tag :defaults %>
+	  <%= yield :head %>
+  </head>
+  <body>
+  	
+	<h1>Event</h1>
+	  	
+	<table class="table table-striped">
+		<thead>
+	    <th></th>
+	    <th><h3>Name=<%=@event.name %>, language=<%= @event.language %></h3> </th>
+	    </thead>
+	</table>
+
+
+	<p><%= link_to "<< Back to event List", events_path %>	</p>
+	
+	<p><%= link_to "Create a New Event", new_event_path, class: "new_article" %></p>
+	  
+	<p><%= link_to "delete", event_path(@event), method: :delete, data: {confirm: "Really delete the event"}%>	<p>
+		
+	<p><%= link_to "edit", edit_event_path(@event) %>	</p>	
+		
+  <%= yield %>
+  </body>
+</html>

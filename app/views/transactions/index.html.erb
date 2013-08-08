@@ -11,17 +11,32 @@
 	<h1>All Transactions</h1>
 	
 	<ul id="transactions">
-	  <% @transactions.each do |transaction| %>
-	    <li>
-	    	<h3><%= link_to transaction.code, transaction_path(transaction), class: 'transaction_code', id: "transaction_#{transaction.id}"%>
-	      	 - <%= transaction.name %></h3>
-	    </li>
-	    
-	  <% end %>
-  
-	  <%= link_to "Create a New Transaction", new_transaction_path, class: "new_transaction" %>
-	</ul>
-	  	
+	   <% @transactions.each do |transaction| %>
+	   <li>
+	      <p>
+	      <h4>Code=<%=transaction.code %>, Name=<%=transaction.name%>	
+	        [<%= link_to "show", transaction_path(transaction)%>,	
+			<% if transaction.events.count > 0 %>
+	        	<%= link_to "Create a event", transaction_new_event_path(transaction.id) %>,
+	         	<%=link_to "Execute", transaction_execute_path(transaction.id) %>]
+	         <%else%>
+	        	<%= link_to "Create a event", transaction_new_event_path(transaction.id)%>]
+			<% end %>	         
+	      </h4>
+	      </p> 
+	   </li>
+	   <% transaction.events.each do |event| %>
+	   <table>
+	      <tr>
+	         <td>
+	            <h5><p><%= link_to "Event:#{event.name}", edit_event_path(event), class: 'event_code', id: "transaction_#{event.code}"%></p></h5>	
+	         </td>
+	      </tr>
+	   </table>
+	   <% end %>
+	   <% end %>
+	   <%= link_to "Create a New Transaction", new_transaction_path, class: "new_article" %>
+	</ul>	  	
   	<%= yield %>
   </body>
 </html>

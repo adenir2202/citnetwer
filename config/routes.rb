@@ -1,6 +1,14 @@
 Citnetwer::Application.routes.draw do
   root to: 'transactions#index'
+  
+  get "/event/new/:id" => "events#new", :as => "transaction_new_event"
+  get "/transaction/execute/:id" => "transactions#execute", :as => "transaction_execute"
+  get "/transaction/list" => "transactions#list", :as => "transaction_list"
+
+  
   resources :transactions
+  
+  resources :events
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
